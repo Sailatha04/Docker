@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+  frontend:
+    image: nginx
+    ports:
+      - "8071:80"
+
+  backend:
+    image: nginx
+    ports:
+      - "8072:80"
