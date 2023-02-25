@@ -1,0 +1,16 @@
+command 1: docker build -t img100 .
+command 2: docker run -it -d --name cont100 -p 8089:80 img100
+
+vim Dockerfile
+FROM ubuntu
+RUN apt update -y
+RUN apt install apache2 -y
+COPY index.html /var/www/html
+CMD ["/usr/sbin/apachectl","-D","FOREGROUND"]
+
+result: after running the image, the container o/p will be like below when we give command "docker ps"
+[root@ip-172-31-11-191 ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+3bab88096374   img100    "/usr/sbin/apachectl…"   7 seconds ago   Up 6 seconds   0.0.0.0:8089->80/tcp, :::8089->80/tcp   cont100
+
+take the public ip addr of instance and give the port number at the end, the launch it in the chrome.
